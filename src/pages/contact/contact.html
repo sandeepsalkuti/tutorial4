@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Search Application
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="bg">
+<div>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>SearchText</ion-label>
+      <ion-input type ="text"[(ngModel)]="searchText" id = searchText></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="getDetails()">GetDetails</button>
+<br><br>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Search Image</ion-label>
+      <ion-input type ="text"[(ngModel)]="url" id = url></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="getImageDetails()">GetImageDetails</button>
+</div>
+  <div *ngIf="getDescription != null">
+    <ion-label><b>Name:</b> {{getDescription.itemListElement[0].result.name}}</ion-label>
+    <ion-label><b>Description:</b> {{getDescription.itemListElement[0].result.description}}</ion-label>
+    <ion-label><b>Referenceurl:</b> {{getDescription.itemListElement[0].result.detailedDescription.url}}</ion-label>
+    <ion-label><b>Detaileddescription:</b> {{getDescription.itemListElement[0].result.detailedDescription.articleBody}}</ion-label>
+   <ion-label><b>Image: </b> <img src="{{getDescription.itemListElement[0].result.image.contentUrl}}" style="width: 150px; height: 150px;" align="center"/></ion-label>
+  </div>
+
+  <div *ngIf="getImageDet != null">
+    <ion-label>{{getImageDet.objects[1].title}}</ion-label>
+    <ion-label>{{getImageDet.objects[1].date}}</ion-label>
+    <a href={{getImageDet.objects[1].pageUrl}} class="list-group-item-text">{{getImageDet.objects[1].pageUrl}}</a>
+    <br>
+    <img src="{{getImageDet.objects[1].url}}" style="width: 70px; height: 80px;" align="center"/>
+  </div>
+</ion-content>
+
